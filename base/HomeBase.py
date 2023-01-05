@@ -44,8 +44,3 @@ class HomeBase:
         :return:
         """
         return "//span[text()='我的地址']/ancestor::div[@class='first_card']/div[contains(@class,'user_avatar')]//img"
-
-
-
-# //aside[@class='el-aside']//span[text()='首页']/ancestor::li
-# //aside[@class='el-aside']//span[text()='已卖出的宝贝']/parent::li
