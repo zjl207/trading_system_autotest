@@ -5,9 +5,13 @@
 import time
 
 from selenium.common.exceptions import ElementNotVisibleException, WebDriverException
+from common.yaml_config import GetConf
 
 
 class ObjectMap:
+    # 获取基础地址
+    url = GetConf().get_url()
+
     def element_get(self, driver, locate_type, locate_expression, timeout=10, must_be_visible=False):
         """
         单个元素获取selenium的二次封装
@@ -135,3 +139,28 @@ class ObjectMap:
                 "元素没有出现，定位方式：" + locate_type + "\n定位表达式" + locate_expression)
         else:
             pass
+
+    def element_to_url(self, driver, url, locate_type_disappear=None, locate_expression_disappear=None,
+                       locate_type_appear=None, locate_expression_appear=None):
+        """
+        跳转地址
+        :param driver: 浏览器驱动
+        :param url: 跳转的地址
+        :param locate_type_disappear:等待页面元素消失的定位方式
+        :param locate_expression_disappear: 等待页面元素消失的定位表达式
+        :param locate_type_appear:等待页面元素出现的定位方式
+        :param locate_expression_appear:等待页面元素出现的定位表达式
+        :return:
+        """
+        try:
+            driver.get(self.url + url)
+            # 等待页面元素加载完成
+            self.wait_for_ready_state_complete(driver)
+            # 等待页面元素消失
+            self.element_disappear(driver, locate_type_disappear, locate_expression_disappear)
+            # 等待页面元素出现
+            self.element_appear(driver, locate_type_appear, locate_expression_appear)
+        except Exception as e:
+            print("跳转地址出现异常，异常原因：%s" % e)
+            return False
+        return True

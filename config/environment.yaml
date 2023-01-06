@@ -8,3 +8,4 @@ mysql:
   port: 3306
   user: root
 
+url: http://www.tcpjwtester.top

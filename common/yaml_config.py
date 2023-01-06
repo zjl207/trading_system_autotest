@@ -42,7 +42,12 @@ class GetConf:
         :return:
         """
         return self.env["mysql"]
+    def get_url(self):
+        """
+        获取跳转地址
+        :return:
+        """
+        return self.env["url"]
 
-
-if __name__ == '__main__':
-    print(GetConf().get_mysql())
+# if __name__ == '__main__':
+#     print(GetConf().get_url())
