@@ -29,12 +29,13 @@ class GetConf:
             self.env = yaml.load(env_file, Loader=yaml.FullLoader)  # 使用pyyaml获取yaml文件中内容
             # print(self.env)
 
-    def get_username_password(self):
+    def get_username_password(self, user):
         """
         获取交易系统登录账号密码
         :return:
         """
-        return self.env["username"], self.env["password"]
+        # return self.env["username"], self.env["password"]
+        return self.env["user"][user]["username"], self.env["user"][user]["password"]
 
     def get_mysql(self):
         """
@@ -42,6 +43,7 @@ class GetConf:
         :return:
         """
         return self.env["mysql"]
+
     def get_url(self):
         """
         获取跳转地址
@@ -49,5 +51,6 @@ class GetConf:
         """
         return self.env["url"]
 
-# if __name__ == '__main__':
-#     print(GetConf().get_url())
+
+if __name__ == '__main__':
+    print(GetConf().get_username_password("jay"))

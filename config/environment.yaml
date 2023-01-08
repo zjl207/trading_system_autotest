@@ -1,5 +1,10 @@
-username: 周杰伦
-password: 123456
+user:
+  jay:
+    username: 周杰伦
+    password: 123456
+  william:
+    username: william
+    password: 123456
 
 mysql:
   db: autotest
@@ -8,4 +13,5 @@ mysql:
   port: 3306
   user: root
 
-url: http://www.tcpjwtester.top
+#url: http://www.tcpjwtester.top
+url: http://192.168.119.128
