@@ -34,6 +34,16 @@ def sep(path, add_sep_before=False, add_sep_after=False):
     return all_path
 
 
-if __name__ == '__main__':
-    print(sep(["config", "environment.yaml"],add_sep_before=True))
-    # print(get_project_path()
+def get_image_path(image_name):
+    """
+    获取商品图片的路径
+    :param image_name:
+    :return:
+    """
+    img_dir_path = get_project_path() + sep(["img", image_name], add_sep_before=True)
+    return img_dir_path
+
+
+# if __name__ == '__main__':
+#     # print(sep(["config", "environment.yaml"], add_sep_before=True))
+#     print(get_image_path("商品图片book.jpg"))
