@@ -3,6 +3,7 @@
 # Author: zjl
 
 import time
+from selenium.webdriver.common.action_chains import ActionChains
 
 from selenium.common.exceptions import ElementNotVisibleException, WebDriverException, NoSuchElementException, \
     StaleElementReferenceException
@@ -326,3 +327,11 @@ class ObjectMap:
         :return:
         """
         driver.switch_to.parent_frame()
+    def action_chains(self,driver,move):
+        """
+        鼠标悬浮
+        :param driver:
+        :return:
+        """
+        ActionChains(driver).move_to_element(move).perform()
+
