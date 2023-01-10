@@ -299,7 +299,7 @@ class ObjectMap:
         element = self.element_get(driver, locate_type, locate_expression)
         return element.send_keys(file_path)
 
-    def switch_window_2_latest_handle(self,driver):
+    def switch_window_2_latest_handle(self, driver):
         """
         句柄切换窗口到最新的窗口
         :param driver:
@@ -307,3 +307,22 @@ class ObjectMap:
         """
         window_handles = driver.window_handles
         driver.switch_to_window(window_handles[-1])
+
+    def switch_into_iframe(self, driver, locate_iframe_type, locate_iframe_expression):
+        """
+        进入iframe
+        :param driver: 浏览器驱动
+        :param locate_iframe_type:定位iframe的方式
+        :param locate_iframe_expression: 定位iframe的表达式
+        :return:
+        """
+        iframe = self.element_get(driver, locate_iframe_type, locate_iframe_expression)
+        driver.switch_to.frame(iframe)
+
+    def switch_from_iframe_to_content(self,driver):
+        """
+        从iframe切回主文档
+        :param driver:
+        :return:
+        """
+        driver.switch_to.parent_frame()
