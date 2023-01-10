@@ -298,3 +298,12 @@ class ObjectMap:
         """
         element = self.element_get(driver, locate_type, locate_expression)
         return element.send_keys(file_path)
+
+    def switch_window_2_latest_handle(self,driver):
+        """
+        句柄切换窗口到最新的窗口
+        :param driver:
+        :return:
+        """
+        window_handles = driver.window_handles
+        driver.switch_to_window(window_handles[-1])
