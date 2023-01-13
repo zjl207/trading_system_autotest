@@ -7,7 +7,7 @@ import pytest
 
 
 class TestRerun:
-    @pytest.mark.flaky(reruns=5, reruns_delay=1)
+    # @pytest.mark.flaky(reruns=5, reruns_delay=1)
     def test_rerun(self):
         # 随机生成1到3的整数
         num = random.randint(1, 3)
