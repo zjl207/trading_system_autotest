@@ -27,9 +27,10 @@ class FindImg:
         img_search = self.img_imread(search_path)
         result = ac.find_template(img_source, img_search)
         print(result)
+        return result["confidence"]
 
 
 # if __name__ == '__main__':
 #     source_path = get_project_path() + sep(["img", "img_source.jpg"], add_sep_before=True)
-#     search_path = get_project_path() + sep(["img", "img_search.jpg"], add_sep_before=True)
+#     search_path = get_project_path() + sep(["img", "head_img.jpg"], add_sep_before=True)
 #     FindImg().get_confidence(source_path, search_path)

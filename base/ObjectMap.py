@@ -8,8 +8,10 @@ from selenium.webdriver.common.action_chains import ActionChains
 from selenium.common.exceptions import ElementNotVisibleException, WebDriverException, NoSuchElementException, \
     StaleElementReferenceException
 from selenium.webdriver.common.keys import Keys
+from common.tools import get_project_path, sep
 
 from common.yaml_config import GetConf
+from common.find_img import FindImg
 
 
 class ObjectMap:
@@ -320,14 +322,15 @@ class ObjectMap:
         iframe = self.element_get(driver, locate_iframe_type, locate_iframe_expression)
         driver.switch_to.frame(iframe)
 
-    def switch_from_iframe_to_content(self,driver):
+    def switch_from_iframe_to_content(self, driver):
         """
         从iframe切回主文档
         :param driver:
         :return:
         """
         driver.switch_to.parent_frame()
-    def action_chains(self,driver,move):
+
+    def action_chains(self, driver, move):
         """
         鼠标悬浮
         :param driver:
@@ -335,3 +338,20 @@ class ObjectMap:
         """
         ActionChains(driver).move_to_element(move).perform()
 
+    def find_img_in_source(self, driver, img_name):
+        """
+        截图并在截图中查找图片
+        :param driver:
+        :param img_name:
+        :return:
+        """
+        # 截图后图片保存的路径
+        source_img_path = get_project_path() + sep(["img", "source_img", img_name], add_sep_before=True)
+        # 需要查找的图片的路径
+        search_img_path = get_project_path() + sep(["img", "assert_img", img_name], add_sep_before=True)
+        # 截图并保存图片
+        driver.get_screenshot_as_file(source_img_path)
+        time.sleep(3)
+        # 在原图中查找是否有指定的图片，返回信心值
+        confidence = FindImg().get_confidence(source_img_path, search_img_path)
+        return confidence
