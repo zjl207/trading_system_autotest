@@ -3,9 +3,11 @@
 # Author: zjl
 
 from time import sleep
+import allure
 
 import pytest
 
+from common.report_add_img import add_img_2_report
 from page.LoginPage import LoginPage
 from page.LeftMenuPage import LeftMenuPage
 from page.GoodsPage import GoodsPage
@@ -33,6 +35,11 @@ goods_info_list = [
 
 
 class TestAddGoods:
+    @allure.description("窗口句柄description")
+    @allure.epic("窗口句柄epic")
+    @allure.feature("窗口句柄feature")
+    @allure.story("窗口句柄story")
+    @allure.tag("窗口句柄tag")
     @pytest.mark.parametrize("goods_info", goods_info_list)
     def test_add_goods_001(self, driver, goods_info):
         LoginPage().login(driver, "jay")
@@ -51,3 +58,4 @@ class TestAddGoods:
             goods_status=goods_info["goods_status"],
             bottom_button_name=goods_info["bottom_button_name"])
         sleep(3)
+        add_img_2_report(driver, "上架商品")
