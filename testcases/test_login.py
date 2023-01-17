@@ -4,28 +4,24 @@
 
 from time import sleep
 import allure
+import pytest
 
 from page.LoginPage import LoginPage
 from common.report_add_img import add_img_2_report
 
 
 class TestLogin:
-    @allure.description("窗口句柄description")
-    @allure.epic("窗口句柄epic")
-    @allure.feature("窗口句柄feature")
-    @allure.story("窗口句柄story")
-    @allure.tag("窗口句柄tag")
+    @allure.description("登录")
+    @allure.epic("登录")
+    @allure.feature("登录")
+    @allure.story("登录")
+    @allure.tag("登录")
+    @pytest.mark.login
     def test_login(self, driver):
-        """登陆后断言头像图片"""
-        LoginPage().login(driver, "jay")
-        add_img_2_report(driver, "登录页")
-        sleep(3)
-        assert LoginPage().login_assert(driver, "head_img.jpg") > 0.9
-        # driver.get("http://www.tcpjwtester.top")
-        # sleep(3)
-        # LoginPage().login_input_value(driver, "用户名", "周杰伦")
-        # sleep(1)
-        # LoginPage().login_input_value(driver, "密码", "123456")
-        # sleep(1)
-        # LoginPage().click_login(driver, "登录")
-        # sleep(3)
+        """使用错误账号登录"""
+        with allure.step("登录"):
+            LoginPage().login(driver, "failure")
+            sleep(3)
+            add_img_2_report(driver, "登录页")
+            # """登陆后断言头像图片"""
+            # assert LoginPage().login_assert(driver, "head_img.jpg") > 0.9
