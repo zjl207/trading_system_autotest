@@ -1,7 +1,8 @@
 # coding=utf-8
 # @time: 2023/1/5 19:53
 # Author: zjl
-
+import datetime
+import os.path
 import time
 from selenium.webdriver.common.action_chains import ActionChains
 
@@ -355,3 +356,19 @@ class ObjectMap:
         # 在原图中查找是否有指定的图片，返回信心值
         confidence = FindImg().get_confidence(source_img_path, search_img_path)
         return confidence
+
+    def element_screenshot(self, driver, locate_type, locate_expression):
+        """
+        元素截图
+        :param driver:
+        :param locate_type:
+        :param locate_expression:
+        :return:
+        """
+        ele_name = datetime.datetime.now().strftime("%Y%m%d%H%M%S") + ".png"
+        ele_img_dir_path = get_project_path() + sep(["img", "ele_img"], add_sep_before=True, add_sep_after=True)
+        if not os.path.exists(ele_img_dir_path):
+            os.mkdir(ele_img_dir_path)
+        ele_img_path = ele_img_dir_path + ele_name
+        self.element_get(driver, locate_type, locate_expression).screenshot(ele_img_path)
+        return ele_img_path
