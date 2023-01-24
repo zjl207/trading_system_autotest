@@ -3,6 +3,7 @@
 # Author: zjl
 import time
 
+import requests
 from selenium.webdriver.common.by import By
 
 from base.LoginBase import LoginBase
@@ -94,3 +95,29 @@ class LoginPage(LoginBase, ObjectMap):
         log.info("点击勾选是否需要验证码")
         select_xpath = self.need_captcha()
         return self.element_click(driver, By.XPATH, select_xpath)
+
+    def api_login(self, driver, user):
+        """
+        通过api登录
+        :param driver:
+        :param user:
+        :return:
+        """
+        log.info("跳转登录页")
+        self.element_to_url(driver, "/login")
+        username, password = GetConf().get_username_password(user)
+        log.info("用户名：" + str(username) + "；密码：" + str(password))
+        url = GetConf().get_url()
+        data = {
+            "user": username,
+            "password": password
+        }
+        log.info("通过api登录")
+        res = requests.post(url + "/api/user/login", json=data)
+        token = res.json()["data"]["token"]
+        js_script = "window.sessionStorage.setItem('token','%s');" % token
+        log.info("将token写入sessionStorage")
+        driver.execute_script(js_script)
+        time.sleep(2)
+        log.info("跳转主页")
+        self.element_to_url(driver, "/")
