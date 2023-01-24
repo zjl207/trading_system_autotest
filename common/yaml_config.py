@@ -37,7 +37,7 @@ class GetConf:
         # return self.env["username"], self.env["password"]
         return self.env["user"][user]["username"], self.env["user"][user]["password"]
 
-    def get_mysql(self):
+    def get_mysql_config(self):
         """
         获取mysql数据库配置
         :return:
