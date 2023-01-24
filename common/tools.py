@@ -6,6 +6,10 @@ def get_now_time():
     return datetime.datetime.now()
 
 
+def get_now_date_str():
+    return datetime.datetime.now().strftime("%Y%m%d%H%M%S")
+
+
 def get_project_path():
     """
     获取项目绝路径
@@ -42,7 +46,6 @@ def get_image_path(image_name):
     """
     img_dir_path = get_project_path() + sep(["img", image_name], add_sep_before=True)
     return img_dir_path
-
 
 # if __name__ == '__main__':
 #     # print(sep(["config", "environment.yaml"], add_sep_before=True))
