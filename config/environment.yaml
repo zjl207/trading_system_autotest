@@ -24,8 +24,6 @@ redis:
 url: http://www.tcpjwtester.top
 #url: http://192.168.119.128
 
-cs: 123456
-
 jenkins:
   url: http://localhost:8080
 
