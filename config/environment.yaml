@@ -31,4 +31,4 @@ dingding_group:
   webhook: https://oapi.dingtalk.com/robot/send?access_token=91c9480370d9e07edcdbfa2aeecae5d1f99625ad35a3e65ff85acbd629550204
 
 qywx_group:
-  webhook: todu
+  webhook: https://oapi.dingtalk.com/robot/send?access_token=91c9480370d9e07edcdbfa2aeecae5d1f99625ad35a3e65ff85acbd629550204
