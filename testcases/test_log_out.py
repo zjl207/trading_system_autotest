@@ -12,6 +12,7 @@ from common.report_add_img import add_img_2_report
 
 class TestLogOut:
     def test_log_out(self, driver):
+        """登录后退出"""
         LoginPage().login(driver, "jay")
         add_img_2_report(driver, "登录页")
         sleep(3)

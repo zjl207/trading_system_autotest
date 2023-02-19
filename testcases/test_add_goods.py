@@ -42,6 +42,7 @@ class TestAddGoods:
     @allure.tag("窗口句柄tag")
     @pytest.mark.parametrize("goods_info", goods_info_list)
     def test_add_goods_001(self, driver, goods_info):
+        """新增二手商品"""
         LoginPage().login(driver, "jay")
         sleep(2)
         LeftMenuPage().click_level_one_menu(driver, "产品")

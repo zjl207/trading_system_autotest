@@ -12,13 +12,13 @@ from common.ding_talk import send_dingtalk_msg
 from common.process_redis import Process
 
 
-def pytest_collection_finish(session):
-    # 所有用例个数
-    total = len(session.items)
-    # 重置用例进度和失败用例名称
-    Process().reset_all()
-    # 初始化进度
-    Process().init_process(total)
+# def pytest_collection_finish(session):
+#     # 所有用例个数
+#     total = len(session.items)
+#     # 重置用例进度和失败用例名称
+#     Process().reset_all()
+#     # 初始化进度
+#     Process().init_process(total)
 
 @pytest.fixture()
 def driver():
@@ -41,16 +41,16 @@ def pytest_runtest_makereport(item, call):
         if report.failed:
             # 失败了就截图
             add_img_2_report(get_driver, "失败截图", need_sleep=False)
-            # 更新失败用例个数
-            Process().update_fail()
-            # 增加失败用例名称
-            Process().insert_into_fail_testcase_names(report.description)
-        elif report.passed:
-            # 更新成功用例个数
-            Process().update_success()
+        #     # 更新失败用例个数
+        #     Process().update_fail()
+        #     # 增加失败用例名称
+        #     Process().insert_into_fail_testcase_names(report.description)
+        # elif report.passed:
+        #     # 更新成功用例个数
+        #     Process().update_success()
         else:
             pass
-        process = Process().get_process()
+        # process = Process().get_process()
 
         webhook = GetConf().get_dingding_webhook()
         send_dingtalk_msg(
@@ -58,7 +58,7 @@ def pytest_runtest_makereport(item, call):
             "测试用例: "
             + report.description
             + "\n测试结果: "
-            + report.outcome
-            + "\n自动化测试进度: "
-            + process,
+            + report.outcome,
+            # + "\n自动化测试进度: "
+            # + process,
         )
