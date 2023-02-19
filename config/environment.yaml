@@ -21,8 +21,8 @@ redis:
   port: 6379
   db: 0
 
-#url: http://www.tcpjwtester.top
-url: http://192.168.119.128
+url: http://www.tcpjwtester.top
+#url: http://192.168.119.128
 
 cs: 123123
 
